@@ -1,0 +1,138 @@
+{
+  "info": {
+    "name": "Student Grades - Grade Ingestion Service",
+    "_postman_id": "grade-ingestion-collection",
+    "description": "Grade submission and management endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Submit Single Grade",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{teacher_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentId\": \"c4444444-4444-4444-4444-444444444444\",\n  \"assignmentId\": \"e1111114-1111-1111-1111-111111111111\",\n  \"score\": 88.5,\n  \"comments\": \"Great project! Well structured code.\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/grades",
+          "host": ["{{base_url}}"],
+          "path": ["grades"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bulk Submit Grades",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{teacher_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"assignmentId\": \"e1111115-1111-1111-1111-111111111111\",\n  \"grades\": [\n    {\n      \"studentId\": \"c4444444-4444-4444-4444-444444444444\",\n      \"score\": 85,\n      \"comments\": \"Good class participation\"\n    },\n    {\n      \"studentId\": \"c5555555-5555-5555-5555-555555555555\",\n      \"score\": 95,\n      \"comments\": \"Excellent engagement!\"\n    },\n    {\n      \"studentId\": \"c6666666-6666-6666-6666-666666666666\",\n      \"score\": 75,\n      \"comments\": \"Satisfactory participation\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/grades/bulk",
+          "host": ["{{base_url}}"],
+          "path": ["grades", "bulk"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Grade",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{teacher_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"score\": 90\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/grades/{{grade_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["grades", "{{grade_id}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Grades by Assignment",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{teacher_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/assignments/e1111111-1111-1111-1111-111111111111/grades",
+          "host": ["{{base_url}}"],
+          "path": ["assignments", "e1111111-1111-1111-1111-111111111111", "grades"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Student Grades",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{student_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/students/c4444444-4444-4444-4444-444444444444/grades",
+          "host": ["{{base_url}}"],
+          "path": ["students", "c4444444-4444-4444-4444-444444444444", "grades"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
+

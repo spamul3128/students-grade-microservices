@@ -1,0 +1,132 @@
+{
+  "info": {
+    "name": "Student Grades - Audit Logging Service",
+    "_postman_id": "audit-logging-collection",
+    "description": "Audit log retrieval and monitoring",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Audit Logs",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/audit-logs?limit=50",
+          "host": ["{{base_url}}"],
+          "path": ["audit-logs"],
+          "query": [
+            {
+              "key": "limit",
+              "value": "50"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Audit Logs by Entity Type",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/audit-logs?entityType=Grade&limit=20",
+          "host": ["{{base_url}}"],
+          "path": ["audit-logs"],
+          "query": [
+            {
+              "key": "entityType",
+              "value": "Grade"
+            },
+            {
+              "key": "limit",
+              "value": "20"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Audit Logs by User",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/audit-logs?userId=b2222222-2222-2222-2222-222222222222&limit=30",
+          "host": ["{{base_url}}"],
+          "path": ["audit-logs"],
+          "query": [
+            {
+              "key": "userId",
+              "value": "b2222222-2222-2222-2222-222222222222"
+            },
+            {
+              "key": "limit",
+              "value": "30"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Audit Logs with Date Range",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{auth_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/audit-logs?from=2024-09-01T00:00:00Z&to=2024-12-31T23:59:59Z",
+          "host": ["{{base_url}}"],
+          "path": ["audit-logs"],
+          "query": [
+            {
+              "key": "from",
+              "value": "2024-09-01T00:00:00Z"
+            },
+            {
+              "key": "to",
+              "value": "2024-12-31T23:59:59Z"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
+

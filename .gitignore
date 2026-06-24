@@ -1,0 +1,17 @@
+.DS_Store
+.idea
+*.iml
+.bsp
+target/
+project/target/
+project/project/
+.metals/
+.vscode/
+*.class
+*.log
+*.swp
+.env
+.env.local
+*.pid
+logs/
+

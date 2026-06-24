@@ -1,0 +1,96 @@
+{
+  "info": {
+    "name": "Student Grades - Grade Calculation Service",
+    "_postman_id": "grade-calculation-collection",
+    "description": "GPA and grade calculation endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Calculate Course Grade",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{teacher_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/calculate/course/c4444444-4444-4444-4444-444444444444/d1111111-1111-1111-1111-111111111111",
+          "host": ["{{base_url}}"],
+          "path": ["calculate", "course", "c4444444-4444-4444-4444-444444444444", "d1111111-1111-1111-1111-111111111111"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Calculate Class Average",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{teacher_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/courses/d1111111-1111-1111-1111-111111111111/average",
+          "host": ["{{base_url}}"],
+          "path": ["courses", "d1111111-1111-1111-1111-111111111111", "average"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Calculate Student Cumulative GPA",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{student_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/students/c4444444-4444-4444-4444-444444444444/gpa/cumulative",
+          "host": ["{{base_url}}"],
+          "path": ["students", "c4444444-4444-4444-4444-444444444444", "gpa", "cumulative"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Calculate Semester GPA",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{student_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/students/c4444444-4444-4444-4444-444444444444/gpa/Fall/2024",
+          "host": ["{{base_url}}"],
+          "path": ["students", "c4444444-4444-4444-4444-444444444444", "gpa", "Fall", "2024"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
+

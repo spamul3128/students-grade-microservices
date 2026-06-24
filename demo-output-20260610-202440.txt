@@ -1,0 +1,179 @@
+=====================================================
+Student Grades Microservices - Comprehensive Demo
+Started: Wed Jun 10 20:24:40 EDT 2026
+=====================================================
+
+[0;34m========================================[0m
+[0;34mINITIALIZING DEMO ENVIRONMENT[0m
+[0;34m========================================[0m
+[0;32m[20:24:40][0m Checking service health...
+[1;33m[INFO][0m Waiting for Auth Service to be ready...
+[0;32m[SUCCESS][0m Auth Service is ready!
+[1;33m[INFO][0m Waiting for Grade Ingestion Service to be ready...
+[0;32m[SUCCESS][0m Grade Ingestion Service is ready!
+[1;33m[INFO][0m Waiting for Grade Calculation Service to be ready...
+[0;32m[SUCCESS][0m Grade Calculation Service is ready!
+[1;33m[INFO][0m Waiting for Report Generation Service to be ready...
+[0;32m[SUCCESS][0m Report Generation Service is ready!
+[1;33m[INFO][0m Waiting for Audit Logging Service to be ready...
+[0;32m[SUCCESS][0m Audit Logging Service is ready!
+[0;32m[SUCCESS][0m All services are healthy!
+
+[0;34m========================================[0m
+[0;34mTESTING AUTH SERVICE[0m
+[0;34m========================================[0m
+[0;32m[20:24:41][0m Logging in as admin...
+[0;32m[SUCCESS][0m Admin login successful
+Admin Response:
+{
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3ODExNDEwODEsImlhdCI6MTc4MTEzNzQ4MSwiaWQiOiJhMTExMTExMS0xMTExLTExMTEtMTExMS0xMTExMTExMTExMTEiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBzY2hvb2wuZWR1Iiwicm9sZXMiOlsiQWRtaW4iXSwic3R1ZGVudElkIjpudWxsLCJ0ZWFjaGVySWQiOm51bGx9.6qgMICOY2ZU5-tcsMn0z_IJEAy3byFD_pqm1hWh75Ag",
+  "expiresAt": "2026-06-11T01:24:41.519984638Z",
+  "user": {
+    "id": "a1111111-1111-1111-1111-111111111111",
+    "username": "admin",
+    "email": "admin@school.edu",
+    "roles": [
+      "Admin"
+    ],
+    "studentId": null,
+    "teacherId": null
+  }
+}
+[0;32m[20:24:41][0m Logging in as Prof. Smith (teacher)...
+[0;32m[SUCCESS][0m Teacher login successful
+Teacher Response:
+{
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3ODExNDEwODEsImlhdCI6MTc4MTEzNzQ4MSwiaWQiOiJiMjIyMjIyMi0yMjIyLTIyMjItMjIyMi0yMjIyMjIyMjIyMjIiLCJ1c2VybmFtZSI6InByb2Yuc21pdGgiLCJlbWFpbCI6InNtaXRoQHNjaG9vbC5lZHUiLCJyb2xlcyI6WyJUZWFjaGVyIl0sInN0dWRlbnRJZCI6bnVsbCwidGVhY2hlcklkIjoiYjIyMjIyMjItMjIyMi0yMjIyLTIyMjItMjIyMjIyMjIyMjIyIn0.WPkrTKmNmSJQATYU_tOhDBr7q5o-O5h-JI-M_T8hTuU",
+  "expiresAt": "2026-06-11T01:24:41.751776138Z",
+  "user": {
+    "id": "b2222222-2222-2222-2222-222222222222",
+    "username": "prof.smith",
+    "email": "smith@school.edu",
+    "roles": [
+      "Teacher"
+    ],
+    "studentId": null,
+    "teacherId": "b2222222-2222-2222-2222-222222222222"
+  }
+}
+[0;32m[20:24:41][0m Logging in as John Doe (student)...
+[0;32m[SUCCESS][0m Student login successful
+Student Response:
+{
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3ODExNDEwODIsImlhdCI6MTc4MTEzNzQ4MiwiaWQiOiJjNDQ0NDQ0NC00NDQ0LTQ0NDQtNDQ0NC00NDQ0NDQ0NDQ0NDQiLCJ1c2VybmFtZSI6ImpvaG4uZG9lIiwiZW1haWwiOiJqb2huLmRvZUBzY2hvb2wuZWR1Iiwicm9sZXMiOlsiU3R1ZGVudCJdLCJzdHVkZW50SWQiOiJjNDQ0NDQ0NC00NDQ0LTQ0NDQtNDQ0NC00NDQ0NDQ0NDQ0NDQiLCJ0ZWFjaGVySWQiOm51bGx9.N-eLdnDvi8tRCrGM3czIhosv5_csBUlcQglagyebccs",
+  "expiresAt": "2026-06-11T01:24:42.124644430Z",
+  "user": {
+    "id": "c4444444-4444-4444-4444-444444444444",
+    "username": "john.doe",
+    "email": "john.doe@school.edu",
+    "roles": [
+      "Student"
+    ],
+    "studentId": "c4444444-4444-4444-4444-444444444444",
+    "teacherId": null
+  }
+}
+[0;32m[20:24:42][0m Validating admin token...
+[0;32m[SUCCESS][0m Token validation successful
+
+[0;34m========================================[0m
+[0;34mTESTING GRADE INGESTION SERVICE[0m
+[0;34m========================================[0m
+[0;32m[20:24:42][0m Submitting a new grade for Final Project...
+Grade Submission Response:
+[0;32m[20:24:42][0m Bulk submitting participation grades...
+Bulk Submission Response:
+[0;32m[20:24:42][0m Retrieving John Doe's grades...
+Student Grades:
+[0;32m[20:24:43][0m Retrieving all grades for Homework 1...
+Assignment Grades:
+[
+  {
+    "id": "1257cd3e-3a4e-4846-a528-bad78f0ef1bf",
+    "studentId": "c6666666-6666-6666-6666-666666666666",
+    "assignmentId": "e1111111-1111-1111-1111-111111111111",
+    "score": 72.0,
+    "submittedAt": "2024-09-15T22:45:00Z",
+    "gradedAt": "2024-09-16T11:00:00Z",
+    "gradedBy": "b2222222-2222-2222-2222-222222222222",
+    "comments": "Keep practicing"
+  },
+  {
+    "id": "cacd1127-3d25-49a3-a160-cbe369b6045c",
+    "studentId": "c4444444-4444-4444-4444-444444444444",
+    "assignmentId": "e1111111-1111-1111-1111-111111111111",
+    "score": 85.0,
+    "submittedAt": "2024-09-14T18:30:00Z",
+    "gradedAt": "2024-09-16T10:00:00Z",
+    "gradedBy": "b2222222-2222-2222-2222-222222222222",
+    "comments": "Good work!"
+  },
+  {
+    "id": "01caa795-9b54-47c8-a964-1b7ae76f82cf",
+    "studentId": "c5555555-5555-5555-5555-555555555555",
+    "assignmentId": "e1111111-1111-1111-1111-111111111111",
+    "score": 95.0,
+    "submittedAt": "2024-09-13T15:20:00Z",
+    "gradedAt": "2024-09-16T10:30:00Z",
+    "gradedBy": "b2222222-2222-2222-2222-222222222222",
+    "comments": "Excellent work!"
+  }
+]
+
+[0;34m========================================[0m
+[0;34mTESTING GRADE CALCULATION SERVICE[0m
+[0;34m========================================[0m
+[0;32m[20:24:43][0m Calculating John Doe's CS101 course grade...
+Course Grade Calculation:
+"No assignments found for course CourseId(d1111111-1111-1111-1111-111111111111)"
+[0;32m[20:24:43][0m Calculating CS101 class average...
+Class Average:
+"No grades found for course"
+[0;32m[20:24:43][0m Calculating John Doe's cumulative GPA...
+Cumulative GPA:
+[0;32m[20:24:43][0m Calculating Fall 2024 semester GPA...
+Semester GPA:
+
+[0;34m========================================[0m
+[0;34mTESTING REPORT GENERATION SERVICE[0m
+[0;34m========================================[0m
+[0;32m[20:24:44][0m Generating John Doe's Fall 2024 report card...
+Report Card:
+[0;32m[20:24:44][0m Generating John Doe's transcript...
+Transcript:
+[0;32m[20:24:44][0m Generating Jane Smith's report card (she's the top student)...
+Jane's Report Card:
+
+[0;34m========================================[0m
+[0;34mTESTING AUDIT LOGGING SERVICE[0m
+[0;34m========================================[0m
+[0;32m[20:24:44][0m Retrieving recent audit logs...
+Recent Audit Logs:
+[0;32m[20:24:44][0m Retrieving grade-related audit logs...
+Grade Audit Logs:
+
+[0;34m========================================[0m
+[0;34mDEMO SUMMARY[0m
+[0;34m========================================[0m
+[0;32m[20:24:44][0m Demo completed successfully!
+[1;33m[INFO][0m Output saved to: demo-output-20260610-202440.txt
+
+[0;32m[20:24:44][0m Test Data Summary:
+[0;32m[20:24:44][0m - Users: Admin, 2 Teachers (Prof. Smith, Prof. Jones), 3 Students (John, Jane, Bob)
+[0;32m[20:24:44][0m - Courses: CS101, CS201, MATH101
+[0;32m[20:24:44][0m - Assignments: 15 total across all courses
+[0;32m[20:24:44][0m - Grades: Multiple grades submitted for each student
+
+[0;32m[20:24:44][0m Services Tested:
+[0;32m[20:24:44][0m ✅ Auth Service - Login, registration, token validation
+[0;32m[20:24:44][0m ✅ Grade Ingestion - Submit, bulk submit, retrieve grades
+[0;32m[20:24:44][0m ✅ Grade Calculation - Course grades, GPA calculations, class averages
+[0;32m[20:24:44][0m ✅ Report Generation - Report cards, transcripts
+[0;32m[20:24:44][0m ✅ Audit Logging - Activity tracking and monitoring
+
+[0;32m[SUCCESS][0m All services demonstrated successfully!
+[1;33m[INFO][0m Review demo-output-20260610-202440.txt for detailed API responses
+
+=====================================================
+Demo completed: Wed Jun 10 20:24:45 EDT 2026
+=====================================================

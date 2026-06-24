@@ -1,0 +1,96 @@
+{
+  "info": {
+    "name": "Student Grades - Report Generation Service",
+    "_postman_id": "report-generation-collection",
+    "description": "Report card and transcript generation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Generate Report Card",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{student_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/students/c4444444-4444-4444-4444-444444444444/report-card/Fall/2024",
+          "host": ["{{base_url}}"],
+          "path": ["students", "c4444444-4444-4444-4444-444444444444", "report-card", "Fall", "2024"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Generate Transcript",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{student_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/students/c4444444-4444-4444-4444-444444444444/transcript",
+          "host": ["{{base_url}}"],
+          "path": ["students", "c4444444-4444-4444-4444-444444444444", "transcript"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Export Report Card as PDF",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{student_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/students/c4444444-4444-4444-4444-444444444444/report-card/Fall/2024/pdf",
+          "host": ["{{base_url}}"],
+          "path": ["students", "c4444444-4444-4444-4444-444444444444", "report-card", "Fall", "2024", "pdf"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Generate Jane's Report Card",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{teacher_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/students/c5555555-5555-5555-5555-555555555555/report-card/Fall/2024",
+          "host": ["{{base_url}}"],
+          "path": ["students", "c5555555-5555-5555-5555-555555555555", "report-card", "Fall", "2024"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
+

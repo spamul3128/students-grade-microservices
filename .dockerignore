@@ -1,0 +1,45 @@
+# Ignore compiled files and build artifacts
+target/
+*.class
+*.log
+*.jar
+*.war
+*.ear
+
+# Ignore IDE files
+.idea/
+.vscode/
+*.iml
+.bsp/
+.metals/
+.project
+.classpath
+.settings/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore git
+.git/
+.gitignore
+
+# Ignore test files
+**/test/
+**/*Test.scala
+**/*Spec.scala
+
+# Ignore documentation
+*.md
+docs/
+*.pdf
+*.docx
+
+# Ignore scripts (not needed in container)
+scripts/
+
+# Keep only necessary files
+!build.sbt
+!project/
+!modules/
+

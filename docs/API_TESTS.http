@@ -1,0 +1,234 @@
+### Students Grade Microservices - API Testing Collection
+### This file can be used with IntelliJ HTTP Client, VS Code REST Client, or similar tools
+
+### Variables
+@baseUrl = http://localhost
+@authPort = 8080
+@ingestionPort = 8081
+@calculationPort = 8082
+@reportsPort = 8083
+@auditPort = 8084
+@token = your-jwt-token-here
+
+################################################################################
+# Auth Service (Port 8080)
+################################################################################
+
+### Health Check
+GET {{baseUrl}}:{{authPort}}/health
+
+### Register a new student
+POST {{baseUrl}}:{{authPort}}/register
+Content-Type: application/json
+
+{
+  "username": "johndoe",
+  "email": "john.doe@university.edu",
+  "password": "securePassword123!",
+  "role": "Student"
+}
+
+### Register a new teacher
+POST {{baseUrl}}:{{authPort}}/register
+Content-Type: application/json
+
+{
+  "username": "profsmith",
+  "email": "prof.smith@university.edu",
+  "password": "teacherPass456!",
+  "role": "Teacher"
+}
+
+### Register an admin
+POST {{baseUrl}}:{{authPort}}/register
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "email": "admin@university.edu",
+  "password": "adminPass789!",
+  "role": "Admin"
+}
+
+### Login as student
+POST {{baseUrl}}:{{authPort}}/login
+Content-Type: application/json
+
+{
+  "username": "johndoe",
+  "password": "securePassword123!"
+}
+
+### Login as teacher
+POST {{baseUrl}}:{{authPort}}/login
+Content-Type: application/json
+
+{
+  "username": "profsmith",
+  "password": "teacherPass456!"
+}
+
+### Validate token
+GET {{baseUrl}}:{{authPort}}/validate
+Authorization: Bearer {{token}}
+
+################################################################################
+# Grade Ingestion Service (Port 8081)
+################################################################################
+
+### Health Check
+GET {{baseUrl}}:{{ingestionPort}}/health
+
+### Submit a single grade (Teacher)
+POST {{baseUrl}}:{{ingestionPort}}/grades
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "studentId": "550e8400-e29b-41d4-a716-446655440001",
+  "assignmentId": "880e8400-e29b-41d4-a716-446655440001",
+  "score": 95.5,
+  "comments": "Excellent work! Well done."
+}
+
+### Bulk submit grades (Teacher)
+POST {{baseUrl}}:{{ingestionPort}}/grades/bulk
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "assignmentId": "880e8400-e29b-41d4-a716-446655440002",
+  "grades": [
+    {
+      "studentId": "550e8400-e29b-41d4-a716-446655440001",
+      "score": 92.0,
+      "comments": "Great job!"
+    },
+    {
+      "studentId": "550e8400-e29b-41d4-a716-446655440002",
+      "score": 87.5,
+      "comments": "Good work"
+    },
+    {
+      "studentId": "550e8400-e29b-41d4-a716-446655440003",
+      "score": 95.0,
+      "comments": "Excellent!"
+    }
+  ]
+}
+
+### Update a grade (Teacher)
+PUT {{baseUrl}}:{{ingestionPort}}/grades/990e8400-e29b-41d4-a716-446655440001
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "score": 98.0
+}
+
+### Get grades for a student
+GET {{baseUrl}}:{{ingestionPort}}/students/550e8400-e29b-41d4-a716-446655440001/grades
+Authorization: Bearer {{token}}
+
+### Get grades for an assignment (Teacher)
+GET {{baseUrl}}:{{ingestionPort}}/assignments/880e8400-e29b-41d4-a716-446655440001/grades
+Authorization: Bearer {{token}}
+
+################################################################################
+# Grade Calculation Service (Port 8082)
+################################################################################
+
+### Health Check
+GET {{baseUrl}}:{{calculationPort}}/health
+
+### Calculate course grade (Teacher)
+POST {{baseUrl}}:{{calculationPort}}/calculate/course/550e8400-e29b-41d4-a716-446655440001/770e8400-e29b-41d4-a716-446655440001
+Authorization: Bearer {{token}}
+
+### Get class average (Teacher)
+GET {{baseUrl}}:{{calculationPort}}/courses/770e8400-e29b-41d4-a716-446655440001/average
+Authorization: Bearer {{token}}
+
+### Get cumulative GPA (Student/Teacher/Admin)
+GET {{baseUrl}}:{{calculationPort}}/students/550e8400-e29b-41d4-a716-446655440001/gpa/cumulative
+Authorization: Bearer {{token}}
+
+### Get semester GPA (Student/Teacher/Admin)
+GET {{baseUrl}}:{{calculationPort}}/students/550e8400-e29b-41d4-a716-446655440001/gpa/Fall/2024
+Authorization: Bearer {{token}}
+
+################################################################################
+# Report Generation Service (Port 8083)
+################################################################################
+
+### Health Check
+GET {{baseUrl}}:{{reportsPort}}/health
+
+### Generate report card
+GET {{baseUrl}}:{{reportsPort}}/students/550e8400-e29b-41d4-a716-446655440001/report-card/Fall/2024
+Authorization: Bearer {{token}}
+
+### Generate transcript
+GET {{baseUrl}}:{{reportsPort}}/students/550e8400-e29b-41d4-a716-446655440001/transcript
+Authorization: Bearer {{token}}
+
+### Export report card as PDF
+POST {{baseUrl}}:{{reportsPort}}/students/550e8400-e29b-41d4-a716-446655440001/report-card/Fall/2024/pdf
+Authorization: Bearer {{token}}
+
+################################################################################
+# Audit Logging Service (Port 8084)
+################################################################################
+
+### Health Check
+GET {{baseUrl}}:{{auditPort}}/health
+
+### Get all audit logs (Admin only)
+GET {{baseUrl}}:{{auditPort}}/audit-logs
+Authorization: Bearer {{token}}
+
+### Get audit logs filtered by entity type
+GET {{baseUrl}}:{{auditPort}}/audit-logs?entityType=Grade
+Authorization: Bearer {{token}}
+
+### Get audit logs for specific entity
+GET {{baseUrl}}:{{auditPort}}/audit-logs?entityType=Grade&entityId=990e8400-e29b-41d4-a716-446655440001
+Authorization: Bearer {{token}}
+
+### Get audit logs for specific user
+GET {{baseUrl}}:{{auditPort}}/audit-logs?userId=aa0e8400-e29b-41d4-a716-446655440002
+Authorization: Bearer {{token}}
+
+### Get audit logs with date range
+GET {{baseUrl}}:{{auditPort}}/audit-logs?from=2024-01-01T00:00:00Z&to=2024-12-31T23:59:59Z
+Authorization: Bearer {{token}}
+
+### Get audit logs with all filters
+GET {{baseUrl}}:{{auditPort}}/audit-logs?entityType=Grade&from=2024-01-01T00:00:00Z&to=2024-12-31T23:59:59Z&limit=50
+Authorization: Bearer {{token}}
+
+################################################################################
+# Complete Workflow Example
+################################################################################
+
+### Step 1: Register and login as teacher
+# POST /register (create teacher account)
+# POST /login (get JWT token)
+
+### Step 2: Submit grades for students
+# POST /grades (submit individual grades)
+# POST /grades/bulk (or bulk submit)
+
+### Step 3: Calculate course grades
+# POST /calculate/course/{studentId}/{courseId}
+
+### Step 4: Student views their grades
+# GET /students/{studentId}/grades
+# GET /students/{studentId}/gpa/cumulative
+
+### Step 5: Generate report card
+# GET /students/{studentId}/report-card/Fall/2024
+
+### Step 6: Admin reviews audit logs
+# GET /audit-logs?entityType=Grade
+
